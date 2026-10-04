@@ -1,4 +1,5 @@
 import numpy as np
+import math
 
 def convert(x):
     new_x = []
@@ -33,6 +34,16 @@ def f(x,theta,n):
     y = []
     for i in x:
         new_x = np.array([i**j for j in range(n+1)])
+        new_x = new_x.reshape(-1, 1)
+        result = theta.T @ new_x
+        y.append(result[0][0])
+    return y
+
+
+def f_sin(x,theta,n):
+    y = []
+    for i in x:
+        new_x = np.array([i**j for j in range(n+1)]+[math.sin(i)])
         new_x = new_x.reshape(-1, 1)
         result = theta.T @ new_x
         y.append(result[0][0])
