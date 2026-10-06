@@ -29,3 +29,22 @@ def plot_points(norms,val_err,save_path):
     # plt.legend()
     fig.savefig(save_path,dpi=300)
     plt.show()
+
+def new_operation_character(X,Y):
+    result=[]
+    for i in range(len(X)):
+        result.append(X[i] * Y[i])
+    return np.array(result)
+
+def plot_training_and_validation_curves(log,save_path,label):
+    fig=plt.figure()
+    for i in range(len(log)):
+        plt.plot(log[i][0],log[i][2],linewidth=2,label='validation error, '+label[i])
+    for i in range(len(log)):
+        plt.plot(log[i][0],log[i][1],linestyle='--',linewidth=2,label='training error, '+label[i])
+    plt.xlabel('steps')
+    plt.ylabel('errors')
+    plt.ylim(0,0.5)
+    plt.legend(loc='center left',bbox_to_anchor=(1,0.5))
+    fig.savefig(save_path,dpi=300,bbox_inches='tight')
+    plt.show()
